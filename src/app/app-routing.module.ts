@@ -1,16 +1,23 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { UserListComponent } from "./user-list/user-list.component";
+import { UserDetailComponent } from "./user-detail/user-detail.component";
+import { AddUserFormComponent } from "./add-user-form/add-user-form.component";
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    path: '',
+    component: UserListComponent, // Utilisation directe du composant
+    pathMatch: 'full' // Utiliser pathMatch: 'full' pour le chemin vide
   },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    path: 'user/:id',
+    component: UserDetailComponent
   },
+  {
+    path: 'new-user',
+    component: AddUserFormComponent
+  }
 ];
 
 @NgModule({
