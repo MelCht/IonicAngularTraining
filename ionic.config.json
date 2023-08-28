@@ -1,0 +1,7 @@
+{
+  "name": "CassageDentIonic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
