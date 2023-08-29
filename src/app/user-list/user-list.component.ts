@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from "../services/users.service";
 import {Router} from "@angular/router";
 
-
 import { ApiResponse, User } from "../services/users.service";
 
 @Component({
@@ -57,7 +56,6 @@ export class UserListComponent implements OnInit {
       (response) => {
         // console.log('Réponse de l\'API (succès) :', response);
         if (response.message === 'Utilisateur supprimé') {
-          console.log('Utilisateur supprimé.');
           this.loadUsers();
         } else {
           console.error('Réponse inattendue de l\'API :', response);

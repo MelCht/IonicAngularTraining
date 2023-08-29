@@ -1,3 +1,37 @@
-<p>
-  user-detail works!
-</p>
+<ion-text class="ion-text-center ion-margin ion-text-lg">{{ userDetails.nom }} {{ userDetails.prenom }}</ion-text>
+
+  <ion-list>
+    <ion-list-header color="medium">Informations de l'utilisateur :</ion-list-header>
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-label>{{ userDetails.email }}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Adresse</ion-label>
+      <ion-label>{{ userDetails.adresse }}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Téléphone</ion-label>
+      <ion-label>{{ userDetails.tel }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+
+<ion-text class="ion-text-center ion-margin ion-text-lg">Possessions de {{ userDetails.nom }} :</ion-text>
+
+  <ion-list>
+    <ion-item color="medium">
+      <ion-label>Nom</ion-label>
+      <ion-label>Valeur</ion-label>
+      <ion-label>Type</ion-label>
+    </ion-item>
+    <ion-item *ngFor="let possession of userPossessions">
+      <ion-label>{{ possession.nom }}</ion-label>
+      <ion-label>{{ possession.valeur }}</ion-label>
+      <ion-label>{{ possession.type }}</ion-label>
+    </ion-item>
+    <ion-item *ngIf="userPossessions.length === 0">
+      <ion-label>Cet utilisateur n'a pas encore de possessions.</ion-label>
+    </ion-item>
+  </ion-list>
+<ion-button routerLink="" expand="full" color="primary">Retour</ion-button>

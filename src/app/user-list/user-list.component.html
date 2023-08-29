@@ -1,2 +1,26 @@
+<ion-list>
+  <ion-item color="medium">
+    <ion-label>Nom</ion-label>
+    <ion-label>Prénom</ion-label>
+    <ion-label>Email</ion-label>
+    <ion-label>Adresse</ion-label>
+    <ion-label>Téléphone</ion-label>
+    <ion-label>Âge</ion-label>
+    <ion-label>Action</ion-label>
+  </ion-item>
 
-  <p>Coucou depuis UserListComponent</p>
+  <ion-item *ngFor="let user of users">
+    <ion-label>
+      <ion-button color="primary" (click)="navigateToUserDetails(user['@id'])">{{ user.nom }}</ion-button>
+    </ion-label>
+    <ion-label>{{ user.prenom }}</ion-label>
+    <ion-label>{{ user.email }}</ion-label>
+    <ion-label>{{ user.adresse }}</ion-label>
+    <ion-label>{{ user.tel }}</ion-label>
+    <ion-label>{{ calculateAge(user.birthDate) }}</ion-label>
+    <ion-label>
+      <ion-button color="danger" (click)="deleteUser($event, user['@id'])">Supprimer</ion-button>
+    </ion-label>
+  </ion-item>
+</ion-list>
+  <ion-button routerLink="/new" expand="full" color="success">Nouvel utilisateur</ion-button>

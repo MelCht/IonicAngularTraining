@@ -33,11 +33,11 @@ export class AddUserFormComponent implements OnInit {
       const userData = this.userForm.value;
       this.userService.createUser(userData).subscribe(
         (response) => {
-          console.log('Utilisateur créé avec succès:', response);
-          this.router.navigate(['/']);
+          this.userForm.reset();
+          this.router.navigate(['/users'])
         },
         (error) => {
-          console.error('Erreur lors de la création de l\'utilisateur:', error);
+          // console.error(error);
         }
       );
     }
