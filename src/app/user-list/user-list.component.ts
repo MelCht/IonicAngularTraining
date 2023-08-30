@@ -3,6 +3,8 @@ import { UserService } from "../services/users.service";
 import {Router} from "@angular/router";
 
 import { ApiResponse, User } from "../services/users.service";
+import { ModalController } from "@ionic/angular";
+import { AddUserFormComponent } from "../add-user-form/add-user-form.component";
 
 @Component({
   selector: 'app-user-list',
@@ -12,7 +14,20 @@ export class UserListComponent implements OnInit {
   users: User[] = [];
 
   constructor(private userService: UserService,
-              private router: Router ) {}
+              private router: Router,
+              private modalCtrl: ModalController) {}
+
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: AddUserFormComponent,
+    });
+
+    modal.onDidDismiss().then(() => {
+      this.loadUsers();
+    })
+
+    await modal.present();
+  }
 
   ngOnInit(): void {
     this.loadUsers();

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from "../services/users.service";
 import {Router} from "@angular/router";
+import {ModalController} from "@ionic/angular";
 
 @Component({
   selector: 'app-add-user-form',
@@ -14,7 +15,7 @@ export class AddUserFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private router:Router,
+    private modalController: ModalController,
   ) {}
 
   ngOnInit(): void {
@@ -34,12 +35,16 @@ export class AddUserFormComponent implements OnInit {
       this.userService.createUser(userData).subscribe(
         (response) => {
           this.userForm.reset();
-          this.router.navigate(['/users'])
+          this.modalController.dismiss({success: true});
         },
         (error) => {
           // console.error(error);
         }
       );
     }
+  }
+
+  onCloseModal():void {
+    this.modalController.dismiss();
   }
 }
